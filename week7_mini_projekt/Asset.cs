@@ -6,7 +6,7 @@ namespace week7_mini_projekt
     abstract class Asset
     {
         public DateTime date; // date of Asset
-        private float price; // cost of Asset
+        private float price; // cost of Asset, stored as dollar value
         public string name; // product name of Asset
         private string office; // office where Asset is.
 
@@ -50,6 +50,13 @@ namespace week7_mini_projekt
             } 
             set { price = value; }
         }
+
+        // Return price in dollar
+        public float GetdollarPrice()
+        {
+            return price;
+        }
+
     }
 
     class Computer(DateTime date, float price, string name, string office) : Asset(date, price, name, office) { }
