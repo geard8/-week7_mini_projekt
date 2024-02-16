@@ -21,7 +21,7 @@ Small solo project as part of learning C# as part of my education.
 
 - All task done
 
-### Improvment i wanted to have done if i hade more time.
+### Improvment I wanted to have done if I hade more time.
 
 - Use officeCurrency for handling currency in Utils.cs UserCreateAsset. But officeCurrency was created after UserCreateAsset.
 
