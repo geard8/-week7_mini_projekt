@@ -11,7 +11,7 @@ namespace week7_mini_projekt
         public Asset (DateTime date, float price, string name, string office)
         {
             this.date = date;
-            this.price = price;
+            Price = price;
             this.name = name;
             Office = office;
         }
@@ -30,14 +30,28 @@ namespace week7_mini_projekt
 
             }
         }
+
+        public float Price
+        {
+            // get Price return price after converting its currency based on office
+            get
+            {
+
+                // exchangeRates used to convert price based on office. Exchange rates based on google 2024-02-16
+                var exchangeRates = new Dictionary<string, float>()
+                {
+                    { "Stockholm", (float)10.46 },
+                    { "Tokyo", (float)150.20 },
+                    { "Boston", 1 }
+                };
+                
+                return price*exchangeRates[office]; 
+            } 
+            set { price = value; }
+        }
     }
 
-    class Computer : Asset
-    {
-        public Computer(DateTime date, float price, string name, string office) : base(date, price, name, office) { }
-    }
-    class Phone : Asset
-    {
-        public Phone(DateTime date, float price, string name, string office) : base(date, price, name, office) { }
-    }
+    class Computer(DateTime date, float price, string name, string office) : Asset(date, price, name, office) { }
+
+    class Phone(DateTime date, float price, string name, string office) : Asset(date, price, name, office) { }
 }
