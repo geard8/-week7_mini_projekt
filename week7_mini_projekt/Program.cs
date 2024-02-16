@@ -1,4 +1,5 @@
 ﻿
+using week6_mini_projekt;
 using week7_mini_projekt;
 
 // demo data for Computer and Phone to be used in list of Asset
@@ -12,10 +13,31 @@ Phone demo6 = new Phone(new DateTime(2021, 7, 27), (float)749.99, "Z 6", "Boston
 // List of Asset. Start out with demo data and newly created Asset will be added.
 List<Asset> listAsset = [demo1, demo2, demo3, demo4, demo5, demo6];
 
-Console.WriteLine("Hello, World!");
+ConsoleKeyInfo cki; // used to store key pressed by the user
 
-//Asset tempAsset = Utils.UserCreateAsset();
+// Choice for user to add more Asset or quit program.
+while (true)
+{
+    Utils.ShowAsset(listAsset); // Show all currenct company Asset
+    while (true)
+    {
+        Console.WriteLine("Add new company asset - press \"A\" | To quit - press \"Q\"");
+        cki = Console.ReadKey();
+        Console.WriteLine();
+        if (cki.Key == ConsoleKey.A || cki.Key == ConsoleKey.Q)
+        {
+            break;
+        }
+        else
+        {
+            Display.DisplayColorMsg("Not valid key, valid key are A or Q", "red");
+        }
+    }
 
-//Console.WriteLine(tempAsset.Office + tempAsset.Price + tempAsset.name + tempAsset.date);
-
-Utils.ShowAsset(listAsset);
+    // If user pressed A then user can add a new Asset
+    if (cki.Key == ConsoleKey.A)
+    {
+        listAsset.Add(Utils.UserCreateAsset());
+    }
+    else { break; }
+}

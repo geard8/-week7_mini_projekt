@@ -18,7 +18,7 @@ namespace week7_mini_projekt
             string newOffice; // office where Asset is.
             int maxLength = 25; // max length for newCategory and newName
 
-            Console.WriteLine("Creating new Asset");
+            Console.WriteLine("Add new Asset to the company");
             Console.WriteLine();
 
             // get user input for isComputer
