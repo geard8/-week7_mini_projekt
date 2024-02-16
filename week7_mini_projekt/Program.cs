@@ -1,4 +1,5 @@
 ﻿
+using week6_mini_projekt;
 using week7_mini_projekt;
 
 // demo data for Computer and Phone to be used in list of Asset
@@ -13,3 +14,7 @@ Phone demo6 = new Phone(new DateTime(2020, 6, 27), (float)6990.99, "Z 6", "Bosto
 List<Asset> listAsset = [demo1, demo2, demo3, demo4, demo5, demo6];
 
 Console.WriteLine("Hello, World!");
+
+Asset tempAsset = Utils.UserCreateAsset();
+
+Console.WriteLine(tempAsset.Office + tempAsset.Price + tempAsset.name + tempAsset.date);

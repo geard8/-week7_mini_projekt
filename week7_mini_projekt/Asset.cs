@@ -1,12 +1,22 @@
 ﻿
+using System.Collections.Generic;
+
 namespace week7_mini_projekt
 {
     abstract class Asset
     {
         public DateTime date; // date of Asset
-        public float price; // cost of Asset
+        private float price; // cost of Asset
         public string name; // product name of Asset
         private string office; // office where Asset is.
+
+        // exchangeRates used to convert price based on office. Exchange rates based on google 2024-02-16
+        public static Dictionary<string, float> exchangeRates = new Dictionary<string, float>()
+                {
+                    { "Stockholm", (float)10.46 },
+                    { "Tokyo", (float)150.20 },
+                    { "Boston", 1 }
+                };
 
         public Asset (DateTime date, float price, string name, string office)
         {
@@ -24,7 +34,7 @@ namespace week7_mini_projekt
             {
                 if (value != "Stockholm" && value != "Tokyo" && value != "Boston") 
                 { 
-                    throw new ArgumentException("office and only be \"Stockholm\" or \"Tokyo\" or \"Boston\""); 
+                    throw new ArgumentException("Office and only be \"Stockholm\" or \"Tokyo\" or \"Boston\""); 
                 }
                 else { office = value; }
 
@@ -36,15 +46,6 @@ namespace week7_mini_projekt
             // get Price return price after converting its currency based on office
             get
             {
-
-                // exchangeRates used to convert price based on office. Exchange rates based on google 2024-02-16
-                var exchangeRates = new Dictionary<string, float>()
-                {
-                    { "Stockholm", (float)10.46 },
-                    { "Tokyo", (float)150.20 },
-                    { "Boston", 1 }
-                };
-                
                 return price*exchangeRates[office]; 
             } 
             set { price = value; }
