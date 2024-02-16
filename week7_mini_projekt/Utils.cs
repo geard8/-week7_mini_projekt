@@ -140,5 +140,47 @@ namespace week7_mini_projekt
                 return new Phone(newDate, newPrice, newName, newOffice);
             }
         }
+
+        // Show a list of Asset based on listAsset to user.
+        // listAsset a list of Asset.
+        public static void ShowAsset(List<Asset> listAsset)
+        {
+            int padRightAmount = 27; // Amount of Right padding used when showing list of products
+            var sortedListAsset = listAsset.OrderBy(x => x.Office).ThenBy(x => x.date); // sort listAsset by office then by date
+
+            Console.WriteLine("Here is a list of all company asset");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+
+            Console.WriteLine(
+                "Type".PadRight(padRightAmount) +
+                "Name".PadRight(padRightAmount) +
+                "Office".PadRight(padRightAmount) +
+                "Purchase Date".PadRight(padRightAmount) +
+                "Price in dollar".PadRight(padRightAmount) +
+                "Local currency".PadRight(padRightAmount) +
+                "Price in local currency".PadRight(padRightAmount)
+                );
+            Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            foreach (Asset asset in sortedListAsset)
+            {
+                string color = "green"; // used to what color a asset in list shall be, default green
+
+                // if less then 3 months left on 3 years end of life time, show asses in red
+                if (DateTime.Now.AddMonths(3).AddYears(-3) > asset.date) { color = "red"; }
+                // if not less then 3 months but less then 6 month left on 3 years end of life time, show asses in yellow
+                else if (DateTime.Now.AddMonths(6).AddYears(-3) > asset.date) { color = "yellow"; }
+
+                // write out info for asset
+                Display.DisplayColorMsg(
+                asset.GetType().Name.PadRight(padRightAmount) +
+                asset.name.PadRight(padRightAmount) +
+                asset.Office.PadRight(padRightAmount) +
+                asset.date.ToString("yyyy-MM-dd").PadRight(padRightAmount) +
+                asset.GetdollarPrice().ToString("0.00").PadRight(padRightAmount) +
+                asset.GetCurrencyType().PadRight(padRightAmount) +
+                asset.Price.ToString("0.00").PadRight(padRightAmount)
+                , color);
+            }
+        }
     }
 }

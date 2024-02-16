@@ -20,7 +20,6 @@
                 Console.WriteLine(msg);
                 Console.ResetColor();
             }
-
             // yellow is ment for Asset that are 6 month or less in list of asset unless it less then 3, then it is red that is used.
             // Or yellow is ment for testing i shall not show up in public version unless something went wrong.
             else if (color == "yellow")

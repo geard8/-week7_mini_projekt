@@ -18,6 +18,14 @@ namespace week7_mini_projekt
                     { "Boston", 1 }
                 };
 
+        // exchangeRates used to convert price based on office. Exchange rates based on google 2024-02-16
+        public static Dictionary<string, string> officeCurrency = new Dictionary<string, string>()
+                {
+                    { "Stockholm", "krona" },
+                    { "Tokyo", "yen" },
+                    { "Boston", "dollar" }
+                };
+
         public Asset (DateTime date, float price, string name, string office)
         {
             this.date = date;
@@ -55,6 +63,11 @@ namespace week7_mini_projekt
         public float GetdollarPrice()
         {
             return price;
+        }
+
+        public string GetCurrencyType()
+        {
+            return officeCurrency[office];
         }
 
     }
